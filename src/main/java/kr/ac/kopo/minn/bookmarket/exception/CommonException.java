@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class CommonException {
     @ExceptionHandler(value = RuntimeException.class)
-    private ModelAndView handleException(Exception e){
+    private ModelAndView handleException(Exception e) {
         ModelAndView mav = new ModelAndView();
         mav.addObject("exception", e.toString());
         mav.setViewName("errorCommon");

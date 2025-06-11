@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import kr.ac.kopo.minn.bookmarket.domain.Book;
 import kr.ac.kopo.minn.bookmarket.exception.BookIdException;
 import kr.ac.kopo.minn.bookmarket.exception.CategoryException;
+import kr.ac.kopo.minn.bookmarket.exception.CommonException;
 import kr.ac.kopo.minn.bookmarket.service.BookService;
 import kr.ac.kopo.minn.bookmarket.validator.BookValidator;
 import kr.ac.kopo.minn.bookmarket.validator.UnitsInStockValidator;
@@ -69,7 +70,7 @@ public class BookController {
     public String requestBooksByCategory(@PathVariable("category")String category, Model model) {
         List<Book> booksByCategory = bookService.getBookListByCategory(category);
         if(booksByCategory == null || booksByCategory.isEmpty()){
-            throw new CategoryException();
+            throw new CategoryException(category);
         }
         model.addAttribute("bookList", booksByCategory);
         return "books";
@@ -143,4 +144,5 @@ public class BookController {
         mav.setViewName("errorBook");
         return mav;
     }
+
 }
