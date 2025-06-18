@@ -14,19 +14,21 @@ public class CartItem {
 
     public CartItem(Book book) {
         this.book = book;
-        this.quantity = 1;
-        this.totalPrice = book.getUnitPrice();
+        quantity = 1;
+        totalPrice = book.getUnitPrice();
     }
+
     public void setBook(Book book) {
         this.book = book;
         updateTotalPrice();
     }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
         updateTotalPrice();
     }
 
-    public void updateTotalPrice(){
-        this.totalPrice = book.getUnitPrice().multiply(new BigDecimal(quantity));
+    public void updateTotalPrice() {
+        totalPrice = book.getUnitPrice().multiply(new BigDecimal(quantity));
     }
 }

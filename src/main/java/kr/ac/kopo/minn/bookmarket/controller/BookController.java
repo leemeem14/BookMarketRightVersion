@@ -6,7 +6,6 @@ import jakarta.validation.Valid;
 import kr.ac.kopo.minn.bookmarket.domain.Book;
 import kr.ac.kopo.minn.bookmarket.exception.BookIdException;
 import kr.ac.kopo.minn.bookmarket.exception.CategoryException;
-import kr.ac.kopo.minn.bookmarket.exception.CommonException;
 import kr.ac.kopo.minn.bookmarket.service.BookService;
 import kr.ac.kopo.minn.bookmarket.validator.BookValidator;
 import kr.ac.kopo.minn.bookmarket.validator.UnitsInStockValidator;
@@ -38,7 +37,7 @@ public class BookController {
     @Value("${file.uploadDir}")
     String fileDir;
 
-//    @Autowired
+    //    @Autowired
 //    private UnitsInStockValidator unitsInStockValidator;
     @Autowired
     private BookValidator bookValidator;
@@ -130,13 +129,12 @@ public class BookController {
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-//        binder.setValidator(unitsInStockValidator);
         binder.setValidator(bookValidator);
         binder.setAllowedFields("bookId", "name", "unitPrice","author", "description", "publisher", "category", "unitsInStock", "releaseDate", "condition", "bookImage");
     }
 
     @ExceptionHandler(value = {BookIdException.class})
-    public ModelAndView handleException (HttpServletRequest request, BookIdException e) {
+    public ModelAndView handleException(HttpServletRequest request, BookIdException e) {
         ModelAndView mav = new ModelAndView();
         mav.addObject("invalidBookId", e.getBookId());
         mav.addObject("exception", e.toString());
@@ -144,5 +142,4 @@ public class BookController {
         mav.setViewName("errorBook");
         return mav;
     }
-
 }
