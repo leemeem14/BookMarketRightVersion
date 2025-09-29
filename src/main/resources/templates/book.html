@@ -7,6 +7,7 @@
           rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
           crossorigin="anonymous">
     <script src="/BookMarket/js/controllers.js"></script>
+
 </head>
 <body>
 <main>
@@ -53,12 +54,12 @@
                 <h4 th:text="${book.getUnitPrice()}+' 원'"></h4>
                 <br>
                 <p>
-                <form name="addFrom" method="post">
-                <input type="hidden" name="_method" value="put">
-                <a th:href="'javascript:addToCart(\''+${book.getBookId()}+'\')'" class="btn btn-primary">도서주문 &raquo;</a>
-                <a href="/BookMarket/cart" class="btn btn-warning" role="button">장바구니 &raquo;</a>
-                <a href="/BookMarket/books" class="btn btn-secondary" role="button">도서목록 &raquo;</a>
-            </form>
+                <form name="addForm" id="addForm" method="post">
+                    <input type="hidden" name="_method" value="put"/>
+                    <a th:href="'javascript:addToCart(\''+ ${book.getBookId()} +'\')'" class="btn btn-primary">도서주문 &raquo;</a>
+                    <a href="/BookMarket/cart" class="btn btn-warning" role="button">장바구니 &raquo;</a>
+                    <a href="/BookMarket/books" class="btn btn-secondary" role="button">도서목록 &raquo;</a>
+                </form>
             </div>
         </div>
 

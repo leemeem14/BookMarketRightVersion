@@ -37,40 +37,39 @@
             <div class="col-md-12">
                 <form name="deleteForm" method="post">
                     <input type="hidden" name="_method" value="delete"/>
-                    <a th:href="'javascript:deleteCart()'" class="btn btn-danger" style="float: left">삭제하기 &raquo;</a>
-                    <a href="#" class="btn btn-success text-right" style="float: right">주문하기 &raquo;</a>
+                    <a th:href="'javascript:deleteCart()'" class="btn btn-danger" style="float:left">삭제하기</a>
+                    <a href="#" class="btn btn-success text-right" style="float:right">주문하기</a>
                 </form>
             </div>
-            <div style="padding-top:50px">
+            <div style="padding-top: 50px">
                 <table class="table table-hover">
                     <tr>
                         <th>도서</th>
                         <th>가격</th>
                         <th>수량</th>
-                        <th>소개</th>
+                        <th>소계</th>
                         <th>비고</th>
                         <th></th>
                     </tr>
-                    <form name="removeFrom" method="post">
+                    <form name="removeForm" method="post">
                         <input type="hidden" name="_method" value="delete"/>
-                    <div th:if="${cart!=null}">
-                        <div th:each="cartItem : ${cart.cartItems}">
-                            <tr>
-                                <td th:text="${cartItem.value.book.bookId}+'-'+${cartItem.value.book.name}"></td>
-                                <td th:text="${cartItem.value.book.bookId}+'-'+${cartItem.value.book.name}"></td>
-                                <td th:text="${cartItem.value.book.unitprice}"></td>
-                                <td th:text="${cartItem.value.quantity}"></td>
-                                <td th:text="${cartItem.value.totalPrice}"></td>
-                                <td><a th:href="'javascript:removeFromCart(\''+${cartItem.value.book.bookId}+'\',\''+${cartId}+'\')'"><span class="badge text-bg-danger">삭제</span></a></td>
-                            </tr>
+                        <div th:if="${cart != null}">
+                            <div th:each="cartItem : ${cart.cartItems}">
+                                <tr>
+                                    <td th:text="${cartItem.value.book.bookId} + ' - ' + ${cartItem.value.book.name}"></td>
+                                    <td th:text="${cartItem.value.book.unitPrice}"></td>
+                                    <td th:text="${cartItem.value.quantity}"></td>
+                                    <td th:text="${cartItem.value.totalPrice}">
+                                    <td><a th:href="'javascript:removeFromCart(\''+ ${cartItem.value.book.bookId} +'\', \''+ ${cartId} +'\')'"><span class="badge text-bg-danger">삭제</span></a></td>
+                                </tr>
+                            </div>
                         </div>
-                    </div>
                     </form>
                 </table>
-                <div class="text=end" style="padding-right: 30px">
+                <div class="text-end" style="padding-right: 30px">
                     <b>총액</b>
                     <span th:if="${cart != null}">
-                        [[${cart.grandTotal}]]
+                        <b>[[${cart.grandTotal}]]</b>
                     </span>
                 </div>
                 <br>
