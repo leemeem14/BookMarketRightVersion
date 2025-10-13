@@ -15,5 +15,5 @@ public class Address {
     private String country;
     private String zipcode; //우편번호
     private String addressName; //기본주소
-    private String detailAddress; // 상세주소
+    private String detailName; // 상세주소
 }
